@@ -26,7 +26,7 @@ In your project's Gruntfile, add a section named `include_bootstrap` to the data
 grunt.initConfig({
   include_bootstrap: {
     options: {
-      // Task-specific options go here.
+      // All options are passed on to the grunt-contrib-less task
     },
     your_target: {
       // Target-specific file lists and/or options go here.
@@ -37,53 +37,42 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+See the [grunt-contrib-less](https://github.com/gruntjs/grunt-contrib-less) project for the available options.
 
-A string value that is used to do something with whatever.
+### Recommended Usage
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
-
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+I'd recommend creating a `manifest.less` file which `@import`s all your other LESS files. You can import any Bootstrap LESS files from any of your files. For example:
 
 ```js
 grunt.initConfig({
   include_bootstrap: {
-    options: {},
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'dest/styles.css': 'less/manifest.less',
     },
   },
 })
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+And in `./less/manifest.less`
 
-```js
-grunt.initConfig({
-  include_bootstrap: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
+```less
+// Import Bootstrap source
+@import 'bootstrap';    // This will import the entire Bootstrap base
+@import 'responsive';   // Bootstrap responsiveness is not included by default in the file above
+
+// Import your LESS files here
+@import 'variables';    // Will import ./less/variables.less
+@import 'signup';
 ```
+
+Keep in mind that LESS variables are retroactive, so you an override a Bootstrap variable in your LESS files, and it will change throughout the Bootstrap core.
+
+#### LESS Options
+
+All task options are passed directly on to the [grunt-contrib-less](https://github.com/gruntjs/grunt-contrib-less) task.
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+In lieu of a formal styleguide, take care to maintain the existing coding style. 
 
 ## Release History
-_(Nothing yet)_
+April 29, 2013 - v0.1.0 - initial release

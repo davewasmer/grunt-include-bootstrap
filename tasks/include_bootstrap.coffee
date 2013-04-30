@@ -14,10 +14,7 @@ module.exports = (grunt) ->
 
   grunt.registerMultiTask 'include_bootstrap', 'Include the base Bootstrap in your LESS, overriden by any of your local styles or variables', ->
 
-    options = @options
-      responsive: true
-
-    options = grunt.util._.extend {}, options, @files
+    options = grunt.util._.extend {}, @options(), @files
 
     options.paths or= []
     options.paths.push path.resolve(path.join('node_modules','grunt-include-bootstrap','less'))
