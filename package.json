@@ -1,7 +1,7 @@
 {
   "name": "grunt-include-bootstrap",
   "description": "Use Bootstrap the right way. Automatically include the LESS soure, and selectively override default values.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/davewasmer/grunt-include-bootstrap",
   "author": {
     "name": "Dave Wasmer",

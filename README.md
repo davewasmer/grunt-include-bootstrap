@@ -75,4 +75,4 @@ All task options are passed directly on to the [grunt-contrib-less](https://gith
 In lieu of a formal styleguide, take care to maintain the existing coding style. 
 
 ## Release History
-April 29, 2013 - v0.1.0 - initial release
+April 29, 2013 - v0.1.1 - initial release
