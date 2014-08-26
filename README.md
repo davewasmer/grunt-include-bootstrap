@@ -30,9 +30,9 @@ grunt.initConfig({
     },
     your_target: {
       // Target-specific file lists and/or options go here.
-    },
-  },
-})
+    }
+  }
+});
 ```
 
 ### Options
@@ -46,11 +46,28 @@ I'd recommend creating a `manifest.less` file which `@import`s all your other LE
 ```js
 grunt.initConfig({
   include_bootstrap: {
-    files: {
-      'dest/styles.css': 'less/manifest.less',
+    development: {
+      options: {
+        sourceMap: true,
+        dumpLineNumbers: 'comments',
+        relativeUrls: true
+      },
+      files: {
+        'dest/styles.css': 'less/manifest.less',
+      },
     },
-  },
-})
+    production: {
+      options: {
+        cleancss: true,
+        compress: true,
+        relativeUrls: true
+      },
+      files: {
+        'dest/styles.css': 'less/manifest.less',
+      },
+    }
+  }
+});
 ```
 
 And in `./less/manifest.less`
